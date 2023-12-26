@@ -11,12 +11,14 @@ export default async function InvoicesTable({
   query: string;
   currentPage: number;
 }) {
+  // fetch invoices based on search
   const invoices = await fetchFilteredInvoices(query, currentPage);
 
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
         <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
+          {/* Show Invoice Data when screen in mobile size */}
           <div className="md:hidden">
             {invoices?.map((invoice) => (
               <div
@@ -54,7 +56,10 @@ export default async function InvoicesTable({
               </div>
             ))}
           </div>
+
+          {/* Table showing data on initial load */}
           <table className="hidden min-w-full text-gray-900 md:table">
+            {/* Table Header */}
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
                 <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
@@ -77,6 +82,8 @@ export default async function InvoicesTable({
                 </th>
               </tr>
             </thead>
+
+            {/* Table Body */}
             <tbody className="bg-white">
               {invoices?.map((invoice) => (
                 <tr
